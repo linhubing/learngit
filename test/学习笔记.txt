@@ -1,0 +1,50 @@
+@Autowired  @Resource  注入bean使用
+@RequestMapping(value="\hello" ,method=RequestMethod.POST) 定义处理器
+@RequestBody  用于处理json入参
+@ResponseBody 返回json参数（将数据转换后放入body数据区）返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用
+@Controller 定义控制类
+@Service 服务层注解
+@Repository dao层注解
+
+单例模式
+懒汉模式
+1、私有构造函数
+2、静态实例；
+3、判断是否已经实例化；
+4、同步控制；
+5、判断是否已经实例化；
+
+简单工厂：单工厂，单类产品，入参标识符判断返回哪种产品 缺点：扩展产品比较麻烦，耦合度高
+反射+简单工厂；
+工厂模式：多工厂（工厂对应品牌），单类产品（同类型，不同品牌），根据调用的工厂不同，返回不同产品
+抽象工厂：多工厂（工厂对应品牌），多类产品（不同类，不同品牌），根据调用的工厂不同，返回多类不同产品
+
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue<Runnable> workQueue,
+                          ThreadFactory threadFactory,
+                          RejectedExecutionHandler handler) //后两个参数为可选参数
+corePoolSize：核心线程数，如果运行的线程少于corePoolSize，则创建新线程来执行新任务，即使线程池中的其他线程是空闲的；
+maximumPoolSize:最大线程数，可允许创建的线程数，corePoolSize和maximumPoolSize设置的边界自动调整池大小：
+corePoolSize <运行的线程数< maximumPoolSize:仅当队列满时才创建新线程
+corePoolSize=运行的线程数= maximumPoolSize：创建固定大小的线程池
+keepAliveTime:如果线程数多于corePoolSize,则这些多余的线程的空闲时间超过keepAliveTime时将被终止；
+unit:keepAliveTime参数的时间单位；
+workQueue:保存任务的阻塞队列，与线程池的大小有关：
+  当运行的线程数少于corePoolSize时，在有新任务时直接创建新线程来执行任务而无需再进队列；
+  当运行的线程数等于或多于corePoolSize，在有新任务添加时则选加入队列，不直接创建线程；
+  当队列满时，在有新任务时就创建新线程；
+
+hashcode()与equals:
+1、hashcode()相同equals不一定相同，hashcode()不同equals肯定不同；
+2、equals效率低，hashcode()效率高，所以大批量数据对比先用hashcode()再用equals；
+
+      线程不同步：HashMap  	 、	      ArrayList、HashSet,TreeSet,SortedSet
+线程同步，效率低：HashTable	 、	         Vector、
+线程同步，效率高：ConcurrentHashMap（分段锁）、CopyOnWriteArrayList（复制再修改）、CopyOnWriteArraySet（复制再修改）
+
+问题解决：
+子表外键无独立索引时，父表进行针对外键的增删改操作时，会锁子表全表，直到父表事务完成。所以如果父表是个长事务，会导致子表长期锁定，如果同时还有对父表的操作，将会等待子表锁释放；
+存储过程中，type类型需要是用nvarchar类型就收java传过来的string类型数据，数据库字段类型是varchar类型的，如果直接只用到where条件中会破坏索引；
