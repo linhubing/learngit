@@ -1,0 +1,36 @@
+linhubing/5271196lhbn
+
+mkdir
+
+git init
+
+
+git add filename
+git commit -m "注释"
+
+
+git add .
+git commit -a
+
+git rm filename
+
+git checkout -- filename
+
+git status
+
+git diff HEAD -- filename
+
+git log 
+git log --pretty=oneline
+git reset --hard HEAD^
+git reset --hard (commit id)
+git reflog
+
+工作区/暂存区
+
+$ ssh-keygen -t rsa -C "youremail@example.com" 生成 id_rsa和id_rsa.pub 两个文件，上次id_rsa.pub 到GitHub
+git remote add origin git@github.com:linhubing/learngit.git
+git push -u origin master
+git push origin master
+
+git clone git@github.com:linhubing/gitskills.git
