@@ -28,11 +28,12 @@ git reflog
 工作区/暂存区
 
 $ ssh-keygen -t rsa -C "youremail@example.com" 生成 id_rsa和id_rsa.pub 两个文件，上次id_rsa.pub 到GitHub
-git remote add origin git@github.com:linhubing/learngit.git
-git push -u origin master
-git push origin master
+git remote add origin git@github.com:linhubing/learngit.git  //关联一个远程库
+git push -u origin master //第一次推送master分支的所有内容
+git push origin master //以后推送
 
-git clone git@github.com:linhubing/gitskills.git
+git clone git@github.com:linhubing/gitskills.git //克隆远程库
+git checkout -b dev origin/dev
 
 git checkout --b dev //创建并切换分支
 
@@ -41,7 +42,46 @@ git checkout dev //切换分支
 
 git branch //查看分支
 
-git merge dev //合并分支到当前分支
+git merge dev //合并分支到当前分支，将master指向dev的当前提交，head切换到master上。
+git merge --no-ff -m "merge with no-ff" dev //合并之后做一次提交，相当于将dev合并到master分支，master再提交一下，master和dev相互独立，合并图清晰。
 
 git branch -d dev //删除分支
 
+git log --graph --pretty=oneline --abbrev-commit //查看分支合并图
+
+
+git stash //保存工作进度、新拉分支，修改，提交，切换原始工作进度，继续开发
+git stash pop //恢复工作进度，删除 stash保存
+git stash apply //恢复工作进度，不删除 stash保存
+git stash list 
+git stash apply stash@{0}
+
+git branch -D branch1 //强行删除
+
+
+git checkout -b branch-name origin/branch-name //在本地创建和远程分支对应的分支
+git remote -v； 查看远程库信息
+
+git push origin branch-name //提交自己的修改到远程库
+git pull //获取远程更新
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。
+git branch --set-upstream branch-name origin/branch-name //建立本地分支和远程分支的关联
+合并，提交，上传远程库
+
+git push origin branch-name //提交自己的修改到远程库
+
+命令git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
+
+git tag -a <tagname> -m "blablabla..."可以指定标签信息；
+
+git tag -s <tagname> -m "blablabla..."可以用PGP签名标签；
+
+命令git tag可以查看所有标签。
+
+命令git push origin <tagname>可以推送一个本地标签；
+
+命令git push origin --tags可以推送全部未推送过的本地标签；
+
+命令git tag -d <tagname>可以删除一个本地标签；
+
+命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
