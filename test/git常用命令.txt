@@ -58,9 +58,11 @@ git stash apply stash@{0}
 
 git branch -D branch1 //强行删除
 
+git remote
+git remote -v； //查看远程库信息
+git remote rm origin //删除远程关联
 
 git checkout -b branch-name origin/branch-name //在本地创建和远程分支对应的分支
-git remote -v； 查看远程库信息
 
 git push origin branch-name //提交自己的修改到远程库
 git pull //获取远程更新
@@ -85,3 +87,4 @@ git tag -s <tagname> -m "blablabla..."可以用PGP签名标签；
 命令git tag -d <tagname>可以删除一个本地标签；
 
 命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
+
